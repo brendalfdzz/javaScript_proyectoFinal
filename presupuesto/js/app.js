@@ -34,20 +34,28 @@ const cargarCabecero = () => {
     let presupuesto = totalIngresos() - totalEgresos();
     let porcentajeEgreso = totalEgresos() / totalIngresos();
 
-    console.log(presupuesto);
-    console.log(porcentajeEgreso);
-    console.log(totalIngresos());
-    console.log(totalEgresos());
+    console.log(formatoMoneda(presupuesto));
+    console.log(formatoPorcentaje(porcentajeEgreso));
+    console.log(formatoMoneda(totalIngresos()));
+    console.log(formatoMoneda(totalEgresos()));
 };
 
 
 // formato a la moneda
 const formatoMoneda = (valor) => {
-    return valor.toLocaleString('en-MX', {
+    return valor.toLocaleString('es-MX', {
         style: 'currency', 
         currency: 'MXN', 
         minimumFractionDigits: 2
     });
-}   
+};   
+
+// formato al porcentaje
+const formatoPorcentaje = (valor) => {
+    return valor.toLocaleString('es-MX', {
+        style: 'percent',
+        minimumFractionDigits: 2
+    });
+};
 
 cargarCabecero();
