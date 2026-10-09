@@ -38,6 +38,16 @@ const cargarCabecero = () => {
     console.log(porcentajeEgreso);
     console.log(totalIngresos());
     console.log(totalEgresos());
-    };
+};
+
+
+// formato a la moneda
+const formatoMoneda = (valor) => {
+    return valor.toLocaleString('en-MX', {
+        style: 'currency', 
+        currency: 'MXN', 
+        minimumFractionDigits: 2
+    });
+}   
 
 cargarCabecero();
