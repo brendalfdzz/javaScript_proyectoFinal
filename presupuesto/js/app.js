@@ -34,10 +34,10 @@ const cargarCabecero = () => {
     let presupuesto = totalIngresos() - totalEgresos();
     let porcentajeEgreso = totalEgresos() / totalIngresos();
 
-    console.log(formatoMoneda(presupuesto));
-    console.log(formatoPorcentaje(porcentajeEgreso));
-    console.log(formatoMoneda(totalIngresos()));
-    console.log(formatoMoneda(totalEgresos()));
+    document.getElementById("presupuesto").innerHTML = formatoMoneda(presupuesto);
+    document.getElementById("porcentaje").innerHTML = formatoPorcentaje(porcentajeEgreso);
+    document.getElementById("ingresos").innerHTML = formatoMoneda(totalIngresos());
+    document.getElementById("egresos").innerHTML = formatoMoneda(totalEgresos());
 };
 
 // formato a la moneda
