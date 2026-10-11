@@ -40,7 +40,6 @@ const cargarCabecero = () => {
     console.log(formatoMoneda(totalEgresos()));
 };
 
-
 // formato a la moneda
 const formatoMoneda = (valor) => {
     return valor.toLocaleString('es-MX', {
