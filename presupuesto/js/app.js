@@ -1,11 +1,11 @@
 const ingresos = [
-                    {descripcion: "Quincena", valor: 9000},
-                    {descripcion: "Venta", valor: 400}
+                    new Ingreso ('Salario', 20000),
+                    new Ingreso ('Venta auto', 50000)
                 ]
 
 const egresos = [
-                    {descripcion: "Renta", valor: 900},
-                    {descripcion: "Ropa", valor: 400}
+                    new Egreso ('Renta', 4000),
+                    new Egreso ('Ropa', 800)
                 ]
 
 // funcion totalIngresos
@@ -24,7 +24,7 @@ const totalEgresos = () => {
     let totalEgreso = 0;
 
     for (let egreso of egresos) {
-        totalEgreso += egreso.valor;
+        totalEgreso += egreso .valor;
     }
 
     return totalEgreso;
