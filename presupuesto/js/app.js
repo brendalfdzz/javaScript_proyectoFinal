@@ -57,4 +57,7 @@ const formatoPorcentaje = (valor) => {
     });
 };
 
-cargarCabecero();
+const cargarApp = () => {
+    cargarCabecero();
+}
+
