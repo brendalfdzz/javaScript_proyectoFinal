@@ -1,12 +1,13 @@
 const ingresos = [
-                    new Ingreso('Salario', 21000),
+                    new Ingreso('Salario', 25000),
                     new Ingreso('Venta auto', 50000),
-                    new Ingreso('Venta', 400)
+                    new Ingreso('Venta', 500)
                 ]
 
 const egresos = [
-                    new Egreso ('Renta', 4000),
-                    new Egreso ('Ropa', 800)
+                    new Egreso ('Renta', 5000),
+                    new Egreso ('Ropa', 1000),
+                    new Egreso ('Comida', 1500)
                 ]
 
 // funcion totalIngresos
@@ -90,9 +91,42 @@ const crearIngresoHTML = (ingreso) => {
     return ingresoHTML;
 }
 
+const cargarEgresos = () => {
+    let egresosHTML = "";
+
+    for (let egreso of egresos) {
+        egresosHTML += crearEgresoHTML(egreso);
+    }
+
+    document.getElementById("lista-egresos").innerHTML = egresosHTML;
+}
+
+const crearEgresoHTML = (egreso) => {
+    let egresoHTML = `
+        <div class="elemento limpiarEstilos">
+            <div class="elemento_descripcion">
+                ${egreso.descripcion}
+            </div>
+            <div class="derecha limpiarEstilos">
+                <div class="elemento_valor">
+                    ${formatoMoneda(egreso.valor)}
+                </div>
+                <div class="elemento_eliminar">
+                    <button class=" elemento_eliminar--btn">
+                        <ion-icon name="close-circle-outline" onclick="eliminarEgreso(${egreso.id})"></ion-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    return egresoHTML;
+}
+
 const cargarApp = () => {
     cargarCabecero();
     cargarIngresos();
+    cargarEgresos();
 };
 
 
