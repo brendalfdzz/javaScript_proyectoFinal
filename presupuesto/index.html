@@ -58,7 +58,7 @@
         </div>
 
         <!-- form -->
-        <form id="forma">
+        <form id="forma" onsubmit="return false">
             <div class="agregar">
                 <div class=" agregar_contenedor">
                     <select class="agregar_tipo" id="tipo">
@@ -67,7 +67,7 @@
                     </select>
                     <input type="text" class="agregar_descripcion" placeholder="Agregar Descripción" id="descripcion">
                     <input type="number" class="agregar_valor" placeholder="Valor" step="any" id="valor">
-                    <button class="agregar_btn">
+                    <button class="agregar_btn" onclick="agregarDato()">
                         <ion-icon name="checkmark-circle-outline"></ion-icon>
                     </button>
                 </div>
