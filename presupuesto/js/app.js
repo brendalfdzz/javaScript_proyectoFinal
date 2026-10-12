@@ -123,6 +123,14 @@ const crearEgresoHTML = (egreso) => {
     return egresoHTML;
 }
 
+const eliminarEgreso = (id) => {
+    let indiceEliminar = egresos.finIndex(egreso => egreso.id == id);
+    egresos.splice(indiceEliminar, 1);
+
+    cargarCabecero();
+    cargarEgresos();
+};
+
 const cargarApp = () => {
     cargarCabecero();
     cargarIngresos();
