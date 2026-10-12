@@ -197,6 +197,8 @@ const agregarDato = () => {
 };
 
 const cargarApp = () => {
+    console.log("brenda fernandez");
+
     cargarCabecero();
     cargarIngresos();
     cargarEgresos();
