@@ -160,6 +160,9 @@ const agregarDato = () => {
             cargarCabecero();
             cargarEgresos();
         };
+        
+        forma["descripcion"].value = "";
+        forma["valor"].value = "";
     };
 };
 
