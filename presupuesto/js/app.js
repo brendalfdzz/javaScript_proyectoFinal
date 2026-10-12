@@ -34,10 +34,17 @@ const totalEgresos = () => {
 
 const cargarCabecero = () => {
     let presupuesto = totalIngresos() - totalEgresos();
-    let porcentajeEgreso = totalEgresos() / totalIngresos();
+
+    // ajustar para que aparezca - si no hay ingresos
+        //let porcentajeEgreso = totalEgresos() / totalIngresos();
+    if (totalIngresos() !== 0) {
+        let porcentajeEgreso = totalEgresos() / totalIngresos();
+        document.getElementById("porcentaje").innerHTML = formatoPorcentaje(porcentajeEgreso);
+    } else {
+        document.getElementById("porcentaje").innerHTML = "- %"
+    }   
 
     document.getElementById("presupuesto").innerHTML = formatoMoneda(presupuesto);
-    document.getElementById("porcentaje").innerHTML = formatoPorcentaje(porcentajeEgreso);
     document.getElementById("ingresos").innerHTML = "+ " + formatoMoneda(totalIngresos());
     document.getElementById("egresos").innerHTML = "- " + formatoMoneda(totalEgresos());
 };
@@ -66,7 +73,13 @@ const cargarIngresos = () => {
         ingresosHTML += crearIngresoHTML(ingreso);
     }
 
-    document.getElementById("lista-ingresos").innerHTML = ingresosHTML;
+    // modificar para agregar mensaje cuando no hay ingresos
+        // document.getElementById("lista-ingresos").innerHTML = ingresosHTML;
+    if (ingresos.length == 0) {
+        document.getElementById("lista-ingresos").innerHTML = "Aun no hay ingresos registrados";
+    } else {
+        document.getElementById("lista-ingresos").innerHTML = ingresosHTML;
+    }
 };
 
 const crearIngresoHTML = (ingreso) => {
@@ -98,10 +111,24 @@ const cargarEgresos = () => {
         egresosHTML += crearEgresoHTML(egreso);
     }
 
-    document.getElementById("lista-egresos").innerHTML = egresosHTML;
+    // modificar para agregar mensaje cuando no hay egresos
+        // document.getElementById("lista-egresos").innerHTML = egresosHTML;
+
+    if (egresos.length == 0) {
+        document.getElementById("lista-egresos").innerHTML = "Aun no hay egresos registrados";
+    } else {
+       document.getElementById("lista-egresos").innerHTML = egresosHTML;
+    }
 }
 
 const crearEgresoHTML = (egreso) => {
+    // ajustar para que aparezca - si no hay ingresos
+    let porcentaje = "- %";
+    
+    if (totalIngresos() !== 0) {
+        porcentaje = formatoPorcentaje(egreso.valor / totalIngresos());
+    }
+
     let egresoHTML = `
         <div class="elemento limpiarEstilos">
             <div class="elemento_descripcion">
@@ -112,7 +139,7 @@ const crearEgresoHTML = (egreso) => {
                    - ${formatoMoneda(egreso.valor)}
                 </div>
                 <div class="elemento_porcentaje">
-                    ${formatoPorcentaje(egreso.valor / totalIngresos())}
+                    ${porcentaje}
                 </div>
                 <div class="elemento_eliminar">
                     <button class=" elemento_eliminar--btn">
@@ -132,6 +159,7 @@ const eliminarEgreso = (id) => {
 
     cargarCabecero();
     cargarEgresos();
+
 };
 
 const eliminarIngreso = (id) => {
@@ -140,6 +168,7 @@ const eliminarIngreso = (id) => {
 
     cargarCabecero();
     cargarIngresos();
+    cargarEgresos();
 };
 
 const agregarDato = () => {
@@ -155,12 +184,13 @@ const agregarDato = () => {
 
             cargarCabecero();
             cargarIngresos();
+            cargarEgresos();
         } else if (tipo == "egreso") {
             egresos.push(new Egreso(descripcion, parseFloat(valor)));
             cargarCabecero();
             cargarEgresos();
         };
-        
+
         forma["descripcion"].value = "";
         forma["valor"].value = "";
     };
