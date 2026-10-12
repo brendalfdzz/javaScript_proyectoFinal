@@ -38,8 +38,8 @@ const cargarCabecero = () => {
 
     document.getElementById("presupuesto").innerHTML = formatoMoneda(presupuesto);
     document.getElementById("porcentaje").innerHTML = formatoPorcentaje(porcentajeEgreso);
-    document.getElementById("ingresos").innerHTML = formatoMoneda(totalIngresos());
-    document.getElementById("egresos").innerHTML = formatoMoneda(totalEgresos());
+    document.getElementById("ingresos").innerHTML = "+ " + formatoMoneda(totalIngresos());
+    document.getElementById("egresos").innerHTML = "- " + formatoMoneda(totalEgresos());
 };
 
 // formato a la moneda
@@ -77,7 +77,7 @@ const crearIngresoHTML = (ingreso) => {
             </div>
             <div class="derecha limpiarEstilos">
                 <div class="elemento_valor">
-                    ${formatoMoneda(ingreso.valor)}
+                    + ${formatoMoneda(ingreso.valor)}
                 </div>
                 <div class="elemento_eliminar">
                     <button class="elemento_eliminar--btn">
@@ -109,7 +109,7 @@ const crearEgresoHTML = (egreso) => {
             </div>
             <div class="derecha limpiarEstilos">
                 <div class="elemento_valor">
-                    ${formatoMoneda(egreso.valor)}
+                   - ${formatoMoneda(egreso.valor)}
                 </div>
                 <div class="elemento_porcentaje">
                     ${formatoPorcentaje(egreso.valor / totalIngresos())}
